@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <style>
+        .topo{
+            text-align: center;
+            word-spacing: 7px;
+            margin-bottom: 100px;
+        }
+        .conta{
+            text-align: center;
+        }
+        .nom{
+            text-align: left;
+            margin-bottom: 0;
+        }
+        .ema{
+            text-align: left;
+            margin-bottom: 0;
+            margin-top: 5px;
+        }
+        .mens{
+            text-align: left;
+            margin-bottom: 0;
+            margin-top: 5px;
+        }
+        .top{
+            margin-bottom: 100px;
+        }
+        .contato{
+            margin-bottom: 70px;
+        }
+        .area-contato{
+            position: absolute;
+            text-align: center;
+            margin-left: 655px;
+        }
+        .enviar{
+            background-color: white;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-top: 20px;
+        }
+        .home{
+            text-decoration: none;
+            color: black;
+        }
+        .contato{
+            text-decoration: none;
+            color: black;
+        }
+        .adm{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="api.js"></script>
+</head>
+<body>
+    <div class="topo">
+        <strong>
+            <h1>
+                <a class="home" href="index.html">Home</a> |
+                <a class="contato" href="contato.html">Contato</a> |
+                <a class="adm" href="admi.html">Área Administrativa</a>
+            </h1>
+        </strong>
+    </div>
+    <div class="contato">
+        <h1 class="conta">Contato</h1>
+    </div>
+    <form id="form">
+        <div class="area-contato">
+            <div class="name">
+                <p class="nom">Nome: </p>
+                <input id="nome" type="text" placeholder="Digite seu nome...">
+            </div>
+            <br><br>
+            <div class="email">
+                <p class="ema">E-mail: </p>
+                <input id="email" type="text" placeholder="Digite seu e-mail...">
+            </div>
+            <br><br>
+            <div class="mensagem">
+                <p class="mens">Mensagem: </p>
+                <input id="mensagem" type="text" placeholder="Digite sua mensagem...">
+            </div>
+            <input id="botao" type="submit" onclick="submitForm()">
+        </div> 
+    </form>  
+</div>
+<script src="jquery-3.6.4.min.js"></script>
+<script src="api.js"></script>
+<script>
+    function submitForm() {
+    var nome = document.getElementById('nome').value;
+    var email = document.getElementById('email').value;
+    var mensagem = document.getElementById('mensagem').value;
+
+    var formData = {
+        nome: nome,
+        email: email,
+        mensagem: mensagem
+    };
+    try {
+        if (inserirMensagem(formData)) {
+            throw new Error("Envio da mensagem falhou!");
+        }
+        alert("Mensagem enviada com sucesso!", "success");
+        document.getElementById('contactForm').reset();
+    } catch (error) {
+        alert(error.message, "error");
+        document.getElementById('contactForm').reset();
+    }
+}
+</script>
+</body>
+</html>

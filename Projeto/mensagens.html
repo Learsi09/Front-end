@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mensagens</title>
+    <style>
+        .topo{
+            text-align: center;
+            word-spacing: 7px;
+            margin-bottom: 100px;
+        }
+        .home{
+            text-decoration: none;
+            color: black;
+        }
+        .contato{
+            text-decoration: none;
+            color: black;
+        }
+        .adm{
+            text-decoration: none;
+            color: black;
+        }
+        .mensa{
+            margin-bottom: 70px;
+            text-align: center;
+        }
+        #messageTableBody{
+            text-align: center;
+        }
+        tr{
+            border: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="topo">
+        <strong>
+            <h1>
+                <a class="home" href="index.html">Home</a> |
+                <a class="contato" href="contato.html">Contato</a> |
+                <a class="adm" href="admi.html">Área Administrativa</a>
+            </h1>
+        </strong>
+    </div>
+    <div class="mensa">
+        <h1 class="mensagem">Mensagens Recebidas</h1>
+    </div>
+    <div class="usuarios">
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Mensagem</th>
+                </tr>
+              </thead>
+              <tbody id="messageTableBody"></tbody>
+            </table>
+          </div>
+    </div>
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="api.js"></script>
+    <script>
+        var receivedMessages = obterMensagens();
+
+            function loadMessages() {
+            var tableBody = document.getElementById('messageTableBody');
+
+            tableBody.innerHTML = '';
+
+            receivedMessages.forEach(function (message) {
+                var row = tableBody.insertRow();
+                var cellName = row.insertCell(0);
+                var cellEmail = row.insertCell(1);
+                var cellMessage = row.insertCell(2);
+
+                cellName.innerHTML = message.nome;
+                cellEmail.innerHTML = message.email;
+                cellMessage.innerHTML = message.mensagem;
+            });
+        }
+        window.onload = function () {
+        loadMessages();
+};
+    </script>
+</body>
+</html>
